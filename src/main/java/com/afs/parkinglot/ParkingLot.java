@@ -44,4 +44,8 @@ public class ParkingLot {
         }
         return parkingRecordSheet.remove(ticket);
     }
+
+    public int getAvailablePosition() {
+        return capacity - parkingRecordSheet.size();
+    }
 }

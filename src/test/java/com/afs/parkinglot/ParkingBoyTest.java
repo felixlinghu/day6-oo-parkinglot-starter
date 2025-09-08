@@ -29,6 +29,7 @@ public class ParkingBoyTest {
     void setUp() {
         System.setOut(new PrintStream(byteArrayOutputStream));
     }
+
     @Test
     public void should_return_ticket_when_car_park() {
         //given
@@ -41,6 +42,7 @@ public class ParkingBoyTest {
         //then
         assertNotNull(ticket);
     }
+
     @Test
     public void should_return_car_when_get_car_with_correct_ticket() {
         //given
@@ -101,7 +103,8 @@ public class ParkingBoyTest {
         //then
         assertNull(result);
     }
-//
+
+    //
     @Test
     public void should_return_null_when_parklot_is_no_position() {
         //given
@@ -178,6 +181,7 @@ public class ParkingBoyTest {
             assertEquals(parkingLot1, ticket.getParkingLot());
         }
     }
+
     @Test
     public void should_return_first_parkingLot_when_first_parkingLot_hava_position_in_any_case() {
         //given
@@ -191,7 +195,7 @@ public class ParkingBoyTest {
         for (int i = 0; i < parkingLot1.getCapacity(); i++) {
             ticket = parkingBoy.parkCar(car1);
         }
-        for (int i = 0; i < parkingLot2.getCapacity()-1; i++) {
+        for (int i = 0; i < parkingLot2.getCapacity() - 1; i++) {
             parkingBoy.parkCar(car1);
         }
         parkingBoy.fetchCar(ticket);

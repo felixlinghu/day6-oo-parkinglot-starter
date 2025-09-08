@@ -16,15 +16,22 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLots;
+
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
 
     public Ticket parkCar(Car car) {
-        return parkingLots.get(0).parkCar(car);
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.getAvailablePosition() > 0) {
+                return parkingLot.parkCar(car);
+            }
+        }
+        System.out.print("No available position.");
+        return null;
     }
 
     public Car fetchCar(Ticket ticket) {
-        return parkingLots.get(0).fetchCar(ticket);
+        return ticket.getParkingLot().fetchCar(ticket);
     }
 }
