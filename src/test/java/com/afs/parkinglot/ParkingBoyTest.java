@@ -133,19 +133,21 @@ public class ParkingBoyTest {
         //then
         assertEquals("No available position.", byteArrayOutputStream.toString());
     }
-//
-//    @Test
-//    public void should_log_error_message_when_ticket_is_error() {
-//        //given
-//        Car car = new Car(1);
-//        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket = parkingBoy.parkCar(car);
-//        Ticket errorTicket = new Ticket(parkingLot, new Car(2), ticket.getPosition());
-//        //when
-//        parkingBoy.fetchCar(errorTicket);
-//        //then
-//        assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
-//    }
+
+    @Test
+    public void should_log_error_message_when_ticket_is_error() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        List<ParkingLot> parkingLots = List.of(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Ticket ticket = parkingBoy.parkCar(car);
+        Ticket errorTicket = new Ticket(parkingLot, new Car(2), ticket.getPosition());
+        //when
+        parkingBoy.fetchCar(errorTicket);
+        //then
+        assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
+    }
 //
 //    @Test
 //    public void should_log_error_message_when_ticket_is_used() {
