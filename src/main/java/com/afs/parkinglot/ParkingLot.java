@@ -15,16 +15,17 @@ public class ParkingLot {
     public ParkingLot() {
         this.capacity = CAPICITY;
     }
+
     public Ticket parkCar(Car car) {
         return IntStream.rangeClosed(1, capacity).boxed()
                 .filter(position -> parkingRecordSheet.keySet().stream().noneMatch(ticket -> ticket.getPosition() == position))
                 .findFirst()
-                .map(positon->
-                {
-                    Ticket ticket = new Ticket(this, car, positon);
-                    parkingRecordSheet.put(ticket,car);
-                    return ticket;
-                }
+                .map(positon ->
+                        {
+                            Ticket ticket = new Ticket(this, car, positon);
+                            parkingRecordSheet.put(ticket, car);
+                            return ticket;
+                        }
                 ).orElse(null);
     }
 

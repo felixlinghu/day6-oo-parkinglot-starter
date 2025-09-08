@@ -36,7 +36,7 @@ public class ParkingLotTest {
         //given
         Car car1 = new Car(1);
         Car car2 = new Car(2);
-        ParkingLot parkingLot=new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot();
         Ticket ticket1 = parkingLot.parkCar(car1);
         Ticket ticket2 = parkingLot.parkCar(car2);
         //when
@@ -51,10 +51,10 @@ public class ParkingLotTest {
     public void should_return_null_when_ticket_is_wrong() {
         //given
         Car car = new Car(1);
-        ParkingLot parkingLot=new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot();
         Ticket ticket = parkingLot.parkCar(car);
         //when
-        Car result = parkingLot.fetchCar(new Ticket(parkingLot,car,11));
+        Car result = parkingLot.fetchCar(new Ticket(parkingLot, car, 11));
         //then
         assertNull(result);
     }
@@ -63,7 +63,7 @@ public class ParkingLotTest {
     public void should_return_null_when_ticket_is_used() {
         //given
         Car car = new Car(1);
-        ParkingLot parkingLot=new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot();
         Ticket ticket = parkingLot.parkCar(car);
         parkingLot.fetchCar(ticket);
         //when
@@ -76,9 +76,9 @@ public class ParkingLotTest {
     public void should_return_null_when_parklot_is_no_position() {
         //given
         Car car = new Car(1);
-        ParkingLot parkingLot=new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot();
         for (int i = 0; i < 10; i++) {
-           parkingLot.parkCar(car);
+            parkingLot.parkCar(car);
         }
         //when
         Ticket ticket = parkingLot.parkCar(car);
