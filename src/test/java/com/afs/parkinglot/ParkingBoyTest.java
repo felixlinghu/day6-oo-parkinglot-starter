@@ -163,4 +163,20 @@ public class ParkingBoyTest {
         //then
         assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
     }
+
+    @Test
+    public void should_return_first_parkingLot_when_first_parkingLot_is_not_full() {
+        //given
+        Car car1 = new Car(1);
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        List<ParkingLot> parkingLots = List.of(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        //when
+        for (int i = 0; i < parkingLot1.getCapacity(); i++) {
+            Ticket ticket = parkingBoy.parkCar(car1);
+            assertEquals(parkingLot1, ticket.getParkingLot());
+        }
+    }
+
 }

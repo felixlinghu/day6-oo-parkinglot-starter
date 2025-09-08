@@ -5,6 +5,10 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ParkingLot {
+    public int getCapacity() {
+        return capacity;
+    }
+
     private int capacity;
     private final static int CAPICITY = 10;
     private HashMap<Ticket, Car> parkingRecordSheet = new HashMap<>();
