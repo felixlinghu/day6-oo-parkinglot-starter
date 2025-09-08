@@ -107,6 +107,7 @@ System.setOut(new PrintStream(byteArrayOutputStream));
         //then
         assertEquals("No available position.",byteArrayOutputStream.toString());
     }
+    @Test
     public void should_log_error_message_when_ticket_is_error() {
         //given
         Car car = new Car(1);
@@ -116,7 +117,7 @@ System.setOut(new PrintStream(byteArrayOutputStream));
         //when
         parkingLot.fetchCar(errorTicket);
         //then
-        assertNull(ticket);
+        assertEquals("Unrecognized parking ticket.",byteArrayOutputStream.toString());
     }
 
 }

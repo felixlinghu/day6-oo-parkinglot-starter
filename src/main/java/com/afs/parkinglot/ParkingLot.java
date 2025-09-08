@@ -35,6 +35,9 @@ public class ParkingLot {
     }
 
     public Car fetchCar(Ticket ticket) {
+        if(!parkingRecordSheet.containsKey(ticket)){
+            System.out.print("Unrecognized parking ticket.");
+        }
         return parkingRecordSheet.remove(ticket);
     }
 }
