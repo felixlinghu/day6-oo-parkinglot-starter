@@ -2,20 +2,18 @@ package com.afs.parkinglot;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.smartcardio.Card;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
-    ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-@BeforeEach
-void setUp(){
-System.setOut(new PrintStream(byteArrayOutputStream));
-}
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+    @BeforeEach
+    void setUp() {
+        System.setOut(new PrintStream(byteArrayOutputStream));
+    }
+
     @Test
     public void should_return_ticket_when_car_park() {
         //given
@@ -105,19 +103,33 @@ System.setOut(new PrintStream(byteArrayOutputStream));
         //when
         Ticket ticket = parkingLot.parkCar(car);
         //then
-        assertEquals("No available position.",byteArrayOutputStream.toString());
+        assertEquals("No available position.", byteArrayOutputStream.toString());
     }
+
     @Test
     public void should_log_error_message_when_ticket_is_error() {
         //given
         Car car = new Car(1);
         ParkingLot parkingLot = new ParkingLot();
         Ticket ticket = parkingLot.parkCar(car);
-        Ticket errorTicket=new Ticket(parkingLot,new Car(2),ticket.getPosition());
+        Ticket errorTicket = new Ticket(parkingLot, new Car(2), ticket.getPosition());
         //when
         parkingLot.fetchCar(errorTicket);
         //then
-        assertEquals("Unrecognized parking ticket.",byteArrayOutputStream.toString());
+        assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
+    }
+
+    @Test
+    public void should_log_error_message_when_ticket_is_used() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = parkingLot.parkCar(car);
+        //when
+        parkingLot.fetchCar(ticket);
+        parkingLot.fetchCar(ticket);
+        //then
+        assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
     }
 
 }
