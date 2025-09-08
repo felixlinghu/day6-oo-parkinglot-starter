@@ -117,20 +117,22 @@ public class ParkingBoyTest {
         //then
         assertNull(ticket);
     }
-//
-//    @Test
-//    public void should_log_error_message_when_parklot_is_no_position() {
-//        //given
-//        Car car = new Car(1);
-//        ParkingLot parkingLot = new ParkingLot();
-//        for (int i = 0; i < 10; i++) {
-//            parkingBoy.parkCar(car);
-//        }
-//        //when
-//        Ticket ticket = parkingBoy.parkCar(car);
-//        //then
-//        assertEquals("No available position.", byteArrayOutputStream.toString());
-//    }
+
+    @Test
+    public void should_log_error_message_when_parklot_is_no_position() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        List<ParkingLot> parkingLots = List.of(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.parkCar(car);
+        }
+        //when
+        Ticket ticket = parkingBoy.parkCar(car);
+        //then
+        assertEquals("No available position.", byteArrayOutputStream.toString());
+    }
 //
 //    @Test
 //    public void should_log_error_message_when_ticket_is_error() {
