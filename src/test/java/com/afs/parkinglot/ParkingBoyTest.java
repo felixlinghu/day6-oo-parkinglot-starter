@@ -55,21 +55,23 @@ public class ParkingBoyTest {
         assertEquals(car, result);
     }
 
-//    @Test
-//    public void should_return_two_car_when_get_car_with_two_correct_ticket() {
-//        //given
-//        Car car1 = new Car(1);
-//        Car car2 = new Car(2);
-//        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket1 = parkingLot.parkCar(car1);
-//        Ticket ticket2 = parkingLot.parkCar(car2);
-//        //when
-//        Car result1 = parkingLot.fetchCar(ticket1);
-//        Car result2 = parkingLot.fetchCar(ticket2);
-//        //then
-//        assertEquals(car1, result1);
-//        assertEquals(car2, result2);
-//    }
+    @Test
+    public void should_return_two_car_when_get_car_with_two_correct_ticket() {
+        //given
+        Car car1 = new Car(1);
+        Car car2 = new Car(2);
+        ParkingLot parkingLot = new ParkingLot();
+        List<ParkingLot> parkingLots = List.of(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Ticket ticket1 = parkingBoy.parkCar(car1);
+        Ticket ticket2 = parkingBoy.parkCar(car2);
+        //when
+        Car result1 = parkingBoy.fetchCar(ticket1);
+        Car result2 = parkingBoy.fetchCar(ticket2);
+        //then
+        assertEquals(car1, result1);
+        assertEquals(car2, result2);
+    }
 //
 //    @Test
 //    public void should_return_null_when_ticket_is_wrong() {
