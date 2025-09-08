@@ -72,28 +72,30 @@ public class ParkingBoyTest {
         assertEquals(car1, result1);
         assertEquals(car2, result2);
     }
-//
-//    @Test
-//    public void should_return_null_when_ticket_is_wrong() {
-//        //given
-//        Car car = new Car(1);
-//        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket = parkingLot.parkCar(car);
-//        //when
-//        Car result = parkingLot.fetchCar(new Ticket(parkingLot, car, 11));
-//        //then
-//        assertNull(result);
-//    }
+
+    @Test
+    public void should_return_null_when_ticket_is_wrong() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        List<ParkingLot> parkingLots = List.of(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Ticket ticket = parkingBoy.parkCar(car);
+        //when
+        Car result = parkingBoy.fetchCar(new Ticket(parkingLot, car, 11));
+        //then
+        assertNull(result);
+    }
 //
 //    @Test
 //    public void should_return_null_when_ticket_is_used() {
 //        //given
 //        Car car = new Car(1);
 //        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket = parkingLot.parkCar(car);
-//        parkingLot.fetchCar(ticket);
+//        Ticket ticket = parkingBoy.parkCar(car);
+//        parkingBoy.fetchCar(ticket);
 //        //when
-//        Car result = parkingLot.fetchCar(ticket);
+//        Car result = parkingBoy.fetchCar(ticket);
 //        //then
 //        assertNull(result);
 //    }
@@ -104,10 +106,10 @@ public class ParkingBoyTest {
 //        Car car = new Car(1);
 //        ParkingLot parkingLot = new ParkingLot();
 //        for (int i = 0; i < 10; i++) {
-//            parkingLot.parkCar(car);
+//            parkingBoy.parkCar(car);
 //        }
 //        //when
-//        Ticket ticket = parkingLot.parkCar(car);
+//        Ticket ticket = parkingBoy.parkCar(car);
 //        //then
 //        assertNull(ticket);
 //    }
@@ -118,10 +120,10 @@ public class ParkingBoyTest {
 //        Car car = new Car(1);
 //        ParkingLot parkingLot = new ParkingLot();
 //        for (int i = 0; i < 10; i++) {
-//            parkingLot.parkCar(car);
+//            parkingBoy.parkCar(car);
 //        }
 //        //when
-//        Ticket ticket = parkingLot.parkCar(car);
+//        Ticket ticket = parkingBoy.parkCar(car);
 //        //then
 //        assertEquals("No available position.", byteArrayOutputStream.toString());
 //    }
@@ -131,10 +133,10 @@ public class ParkingBoyTest {
 //        //given
 //        Car car = new Car(1);
 //        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket = parkingLot.parkCar(car);
+//        Ticket ticket = parkingBoy.parkCar(car);
 //        Ticket errorTicket = new Ticket(parkingLot, new Car(2), ticket.getPosition());
 //        //when
-//        parkingLot.fetchCar(errorTicket);
+//        parkingBoy.fetchCar(errorTicket);
 //        //then
 //        assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
 //    }
@@ -144,10 +146,10 @@ public class ParkingBoyTest {
 //        //given
 //        Car car = new Car(1);
 //        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket = parkingLot.parkCar(car);
+//        Ticket ticket = parkingBoy.parkCar(car);
 //        //when
-//        parkingLot.fetchCar(ticket);
-//        parkingLot.fetchCar(ticket);
+//        parkingBoy.fetchCar(ticket);
+//        parkingBoy.fetchCar(ticket);
 //        //then
 //        assertEquals("Unrecognized parking ticket.", byteArrayOutputStream.toString());
 //    }
