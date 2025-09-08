@@ -1,30 +1,34 @@
 package com.afs.parkinglot;
 
+import java.util.HashMap;
+import java.util.stream.IntStream;
+
 public class ParkingLot {
     private int capacity;
-    private int size;
+    private final static int CAPICITY = 10;
+    private HashMap<Ticket, Car> parkingRecordSheet = new HashMap<>();
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
-        size = 0;
     }
 
     public ParkingLot() {
+        this.capacity = CAPICITY;
     }
-
-    ;
-
     public Ticket parkCar(Car car) {
-        if (car == null || car.getId() == null) {
-            return null;
-        }
-        Ticket ticket = new Ticket(this, car);
-        size++;
-        return ticket;
+        return IntStream.rangeClosed(1, capacity).boxed()
+                .filter(position -> parkingRecordSheet.keySet().stream().noneMatch(ticket -> ticket.getPosition() == position))
+                .findFirst()
+                .map(positon->
+                {
+                    Ticket ticket = new Ticket(this, car, positon);
+                    parkingRecordSheet.put(ticket,car);
+                    return ticket;
+                }
+                ).orElse(null);
     }
 
     public Car fetchCar(Ticket ticket) {
-
-        return new Car();
+        return parkingRecordSheet.remove(ticket);
     }
 }
