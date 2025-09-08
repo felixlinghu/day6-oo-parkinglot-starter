@@ -178,5 +178,29 @@ public class ParkingBoyTest {
             assertEquals(parkingLot1, ticket.getParkingLot());
         }
     }
+    @Test
+    public void should_return_first_parkingLot_when_first_parkingLot_hava_position_in_any_case() {
+        //given
+        Car car1 = new Car(1);
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        List<ParkingLot> parkingLots = List.of(parkingLot1, parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        //when
+        Ticket ticket = null;
+        for (int i = 0; i < parkingLot1.getCapacity(); i++) {
+            ticket = parkingBoy.parkCar(car1);
+        }
+        for (int i = 0; i < parkingLot2.getCapacity()-1; i++) {
+            parkingBoy.parkCar(car1);
+        }
+        parkingBoy.fetchCar(ticket);
+        Ticket ticket1 = parkingBoy.parkCar(car1);
+        //then
+        assertEquals(parkingLot1, ticket1.getParkingLot());
+
+
+    }
+
 
 }
