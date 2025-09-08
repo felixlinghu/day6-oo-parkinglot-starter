@@ -1,7 +1,7 @@
 package com.afs.parkinglot;
 
 public class Car {
-    Integer id;
+    private Integer id;
 
     public Car(Integer id) {
         this.id = id;
@@ -9,4 +9,7 @@ public class Car {
     public Car() {
     }
 
+    public Integer getId() {
+        return id;
+    }
 }

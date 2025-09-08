@@ -1,11 +1,29 @@
 package com.afs.parkinglot;
 
 public class ParkingLot {
-    public static Ticket parkCar(Car car) {
-        return null;
+    private int capacity;
+    private int size;
+
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+        size = 0;
     }
 
-    public static Car fetchCar(Ticket ticket) {
+    public ParkingLot() {
+    }
+
+    ;
+
+    public Ticket parkCar(Car car) {
+        if (car == null || car.getId() == null) {
+            return null;
+        }
+        Ticket ticket = new Ticket(this, car);
+        size++;
+        return ticket;
+    }
+
+    public Car fetchCar(Ticket ticket) {
 
         return new Car();
     }
