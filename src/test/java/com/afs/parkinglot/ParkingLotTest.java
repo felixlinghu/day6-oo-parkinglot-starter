@@ -1,13 +1,21 @@
 package com.afs.parkinglot;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.smartcardio.Card;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
-
+    ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+@BeforeEach
+void setUp(){
+System.setOut(new PrintStream(byteArrayOutputStream));
+}
     @Test
     public void should_return_ticket_when_car_park() {
         //given
@@ -82,6 +90,31 @@ public class ParkingLotTest {
         }
         //when
         Ticket ticket = parkingLot.parkCar(car);
+        //then
+        assertNull(ticket);
+    }
+
+    @Test
+    public void should_log_error_message_when_parklot_is_no_position() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        for (int i = 0; i < 10; i++) {
+            parkingLot.parkCar(car);
+        }
+        //when
+        Ticket ticket = parkingLot.parkCar(car);
+        //then
+        assertEquals("No available position.",byteArrayOutputStream.toString());
+    }
+    public void should_log_error_message_when_ticket_is_error() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        Ticket ticket = parkingLot.parkCar(car);
+        Ticket errorTicket=new Ticket(parkingLot,new Car(2),ticket.getPosition());
+        //when
+        parkingLot.fetchCar(errorTicket);
         //then
         assertNull(ticket);
     }
