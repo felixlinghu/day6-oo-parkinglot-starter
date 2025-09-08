@@ -47,17 +47,18 @@ public class ParkingLotTest {
         assertEquals(car2, result2);
     }
 
-//    @Test
-//    public void should_return_null_when_ticket_is_wrong() {
-//        //given
-//        Car car = new Car(1);
-//        Ticket ticket = parkingLot.parkCar(car);
-//        //when
-//        Car result = parkingLot.fetchCar(new Ticket());
-//        //then
-//        assertNull(result);
-//    }
-//
+    @Test
+    public void should_return_null_when_ticket_is_wrong() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot=new ParkingLot();
+        Ticket ticket = parkingLot.parkCar(car);
+        //when
+        Car result = parkingLot.fetchCar(new Ticket(parkingLot,car,11));
+        //then
+        assertNull(result);
+    }
+
 //    @Test
 //    public void should_return_null_when_ticket_is_used() {
 //        //given
