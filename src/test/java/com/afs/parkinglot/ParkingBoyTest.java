@@ -86,19 +86,21 @@ public class ParkingBoyTest {
         //then
         assertNull(result);
     }
-//
-//    @Test
-//    public void should_return_null_when_ticket_is_used() {
-//        //given
-//        Car car = new Car(1);
-//        ParkingLot parkingLot = new ParkingLot();
-//        Ticket ticket = parkingBoy.parkCar(car);
-//        parkingBoy.fetchCar(ticket);
-//        //when
-//        Car result = parkingBoy.fetchCar(ticket);
-//        //then
-//        assertNull(result);
-//    }
+
+    @Test
+    public void should_return_null_when_ticket_is_used() {
+        //given
+        Car car = new Car(1);
+        ParkingLot parkingLot = new ParkingLot();
+        List<ParkingLot> parkingLots = List.of(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Ticket ticket = parkingBoy.parkCar(car);
+        parkingBoy.fetchCar(ticket);
+        //when
+        Car result = parkingBoy.fetchCar(ticket);
+        //then
+        assertNull(result);
+    }
 //
 //    @Test
 //    public void should_return_null_when_parklot_is_no_position() {
